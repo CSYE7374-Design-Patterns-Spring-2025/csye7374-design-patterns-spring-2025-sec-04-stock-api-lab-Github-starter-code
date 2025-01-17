@@ -26,13 +26,6 @@ public class StockMarket {
         stocks.put(stock.getName(), stock);
     }
 
-    public void tradeStock(String name, String bid) {
-        Stock stock = stocks.get(name);
-        if (stock != null) {
-            stock.setBid(bid);
-        }
-    }
-
     public void removeStock(String name) {
         stocks.remove(name);
     }
@@ -41,5 +34,36 @@ public class StockMarket {
         for (Stock stock : stocks.values()) {
             System.out.println(stock);
         }
+    }
+
+    public void tradeStock(Stock stock, String bid) {
+        stock.setBid(bid);
+        System.out.println(stock);
+    }
+
+    public void initializeBiding(Stock stock, String[] bids) {
+        for (String bid : bids) {
+            tradeStock(stock, bid);
+        }
+    }
+
+    public static void demo() {
+        StockMarket stockMarket = StockMarket.getInstance();
+
+        System.out.println("======= MSFT Stock Bid Start ======= ");
+        Stock msftStock = new MSFT();
+        stockMarket.addStock(msftStock);
+        stockMarket.initializeBiding(msftStock, new String[]{"90", "100", "90", "80", "150", "155"});
+        System.out.println("\n");
+
+        System.out.println("======= Adobe Stock Bid Start ======= ");
+        Stock adobeStock = new Adobe();
+        stockMarket.addStock(adobeStock);
+        stockMarket.initializeBiding(adobeStock, new String[]{"260", "280", "230", "275", "275", "290"});
+        System.out.println("\n");
+
+        System.out.println("======= All Stock Information ======= ");
+        stockMarket.showAllStocks();
+        System.out.println("\n");
     }
 }
