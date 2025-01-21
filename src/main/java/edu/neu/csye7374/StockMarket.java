@@ -74,6 +74,12 @@ public class StockMarket {
         stockMarket.initializeBiding(teslaStock, new String[]{"50", "60", "40", "80", "90", "100"});
         System.out.println("\n");
 
+        System.out.println("======= Apple Stock Bid Start ======= ");
+        Stock appleStock = new Apple();
+        stockMarket.addStock(appleStock);
+        stockMarket.initializeBiding(appleStock, new String[]{"150", "160", "140", "180", "190", "200"});
+        System.out.println("\n");
+
         System.out.println("======= All Stock Information ======= ");
         stockMarket.showAllStocks();
         System.out.println("\n");
